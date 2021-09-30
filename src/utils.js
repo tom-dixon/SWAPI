@@ -9,12 +9,12 @@ export const getStarships = async (films) => {
     data.push(...nextPage.data.results);
     next = nextPage.data.next;
   }
-  const processedData = processData(data);
+  const processedData = processData(films, data);
   console.log("processed data: ", processedData);
   return processedData;
 };
 
-const processData = (rawData = []) => {
+const processData = (films = {}, rawData = []) => {
   console.log("processing", rawData, rawData.length);
   const count = +rawData.length;
   const results = rawData.map((item) => {
@@ -24,7 +24,7 @@ const processData = (rawData = []) => {
       crew: item.crew,
       passengers: item.passengers,
       films_count: item.films.length,
-      films: getFilmDetails(item.films)
+      films: getFilmDetails(films, item.films)
     };
   });
   return {
@@ -46,15 +46,6 @@ export const getFilms = async () => {
   return films;
 };
 
-const getFilmDetails = (films) => {
-  console.log("films", films);
-  // Promise.all(
-  //   films.map((film) => {
-  //     return axios(film);
-  //   })
-  // ).then((responses) => {
-  //   responses.forEach((response) => {
-  //     console.log(response);
-  //   });
-  // });
+const getFilmDetails = (allFilms, starshipFilms) => {
+  return starshipFilms.map((film) => allFilms[film]);
 };
