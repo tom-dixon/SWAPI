@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <Caci />
+    <Starships />
   </div>
 </template>
 
 <script>
-import Caci from "./components/Caci";
+import Starships from "./components/Starships";
 
 export default {
-  name: "CACI",
+  name: "App",
   components: {
-    Caci,
+    Starships,
   },
 };
 </script>
