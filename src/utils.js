@@ -13,7 +13,7 @@ export const getStarships = async (films) => {
   return processedData;
 };
 
-const processData = (films = {}, rawData = []) => {
+export const processData = (films = {}, rawData = []) => {
   const count = +rawData.length;
   const results = rawData.map((item) => {
     return {
@@ -65,7 +65,7 @@ const sortFunction = ({ crewNumber: a }, { crewNumber: b }) => {
 const rangeRegEx = /\d+/g;
 const commaRexEx = /,/g;
 
-const makeCrewANumber = (crew) => {
+export const makeCrewANumber = (crew) => {
   // handle strings
   if (isNaN(+crew)) {
     if (crew.match(commaRexEx)) {
